@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cex:urls": "npx ts-node scripts/coronaex_comic_urls.ts",
+    "cex:details": "npx ts-node scripts/coronaex_comic_details.ts",
+    "cex:concat": "python scripts/coronaex_comic_concat_details.py",
+    "cex:jq": "cat tmp/coronaex_comic_details.json | jq '.[].title'",
+    "cex:jq2": "cat tmp/coronaex_comic_details.json | jq '.[] | {title, likeCount}'"
   },
   "keywords": [],
   "author": "",
