@@ -65,7 +65,7 @@ async function run() {
 
   // ファイルに書き出す
   const json = JSON.stringify(urls, null, 2);
-  fs.writeFileSync("tmp/coronaex_comics_urls.json", json);
+  fs.writeFileSync("tmp/coronaex_comic_urls.json", json);
 }
 
 async function getComicLinks(page: Page): Promise<string[]> {

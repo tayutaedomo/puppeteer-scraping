@@ -18,22 +18,22 @@ async function run() {
   await page.setViewport({ width: 1280, height: 768 });
 
   const urls: string[] = JSON.parse(
-    fs.readFileSync("tmp/coronaex_comics_urls.json", "utf8")
+    fs.readFileSync("tmp/coronaex_comic_urls.json", "utf8")
   );
 
   // 直列に処理するため for 文を使う
-  for (let url of urls.slice(0, 2)) {
+  for (let url of urls) {
     console.log("Scraping:", url);
 
     const detail = await fetchComicDetailIfNotExists(page, url);
     if (detail) {
       const file_name = writeDetail(detail);
       console.log("Write to file:", file_name);
+
+      await page.waitForTimeout(3000);
     } else {
       console.log("Skipped");
     }
-
-    await page.waitForTimeout(2000);
   }
 
   await browser.close();
