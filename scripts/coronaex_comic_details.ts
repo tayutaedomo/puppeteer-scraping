@@ -22,21 +22,34 @@ async function run() {
   );
 
   // 直列に処理するため for 文を使う
-  const details: ComicDetail[] = [];
+  for (let url of urls.slice(0, 2)) {
+    console.log("Scraping:", url);
 
-  for (let url of urls.slice(0, 3)) {
-    console.log("Scraping URL:", url);
-
-    details.push(await fetchComicDetail(page, url));
+    const detail = await fetchComicDetailIfNotExists(page, url);
+    if (detail) {
+      const file_name = writeDetail(detail);
+      console.log("Write to file:", file_name);
+    } else {
+      console.log("Skipped");
+    }
 
     await page.waitForTimeout(2000);
   }
 
   await browser.close();
+}
 
-  // ファイルに書き出す
-  const json = JSON.stringify(details, null, 2);
-  fs.writeFileSync("tmp/coronaex_comics_details.json", json);
+async function fetchComicDetailIfNotExists(
+  page: Page,
+  url: string
+): Promise<ComicDetail | null> {
+  const id = url.split("/").pop();
+  const file_name = `tmp/coronaex_detail_${id}.json`;
+  if (fs.existsSync(file_name)) {
+    return null;
+  } else {
+    return await fetchComicDetail(page, url);
+  }
 }
 
 async function fetchComicDetail(page: Page, url: string): Promise<ComicDetail> {
@@ -65,7 +78,17 @@ async function fetchComicDetail(page: Page, url: string): Promise<ComicDetail> {
     latestEpisode: latestEpisode,
   };
 
+  console.log("Scraping:", detail.url);
+
   return detail;
+}
+
+function writeDetail(detail: ComicDetail): string {
+  const json = JSON.stringify(detail, null, 2);
+  const id = detail.url.split("/").pop();
+  const file_name = `tmp/coronaex_detail_${id}.json`;
+  fs.writeFileSync(file_name, json);
+  return file_name;
 }
 
 run().catch(console.error);
