@@ -11,13 +11,15 @@
     "cex:jq2": "cat tmp/coronaex_comic_details.json | jq '.[] | {title, likeCount}'",
     "cex:jq3": "cat tmp/coronaex_comic_details.json | jq 'map(select(.likeCount >= 50000)) | sort_by(.likeCount)'",
     "cex:jq4": "cat tmp/coronaex_comic_details.json | jq '[.[] | select(.likeCount >= 50000)] | length'",
-    "cex:jq5": "cat tmp/coronaex_comic_details.json | jq -r '[.[] | select(.likeCount >= 50000)] | sort_by(.likeCount) | map([.likeCount ,.title] | join(\",\")) | join(\"\n\")'"
+    "cex:jq5": "cat tmp/coronaex_comic_details.json | jq -r '[.[] | select(.likeCount >= 50000)] | sort_by(.likeCount) | map([.likeCount ,.title] | join(\",\")) | join(\"\n\")'",
+    "cw:rank": "npx ts-node scripts/comicwalker_ranking.ts"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@puppeteer/browsers": "^1.4.6",
+    "cheerio": "^1.0.0-rc.12",
     "puppeteer": "^20.8.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
