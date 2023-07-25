@@ -39,8 +39,8 @@ async function run() {
   // ファイルに書き出す
   const data: Ranking = {
     date: new Date().toISOString(),
-    daily: urls[0],
-    monthly: urls[1],
+    dailyUrls: urls[0],
+    monthlyUrls: urls[1],
   };
   const json = JSON.stringify(data, null, 2);
   fs.writeFileSync("tmp/comic-walker_ranking.json", json);
