@@ -18,7 +18,7 @@ async function run() {
   await page.setViewport({ width: 1280, height: 768 });
 
   const urls: string[] = JSON.parse(
-    fs.readFileSync("tmp/coronaex_comic_urls.json", "utf8")
+    fs.readFileSync("tmp/corona-ex_comic_urls.json", "utf8")
   );
 
   // 直列に処理するため for 文を使う
@@ -44,7 +44,7 @@ async function fetchComicDetailIfNotExists(
   url: string
 ): Promise<ComicDetail | null> {
   const id = url.split("/").pop();
-  const file_name = `tmp/coronaex_detail_${id}.json`;
+  const file_name = `tmp/corona-ex_detail_${id}.json`;
   if (fs.existsSync(file_name)) {
     return null;
   } else {
@@ -86,7 +86,7 @@ async function fetchComicDetail(page: Page, url: string): Promise<ComicDetail> {
 function writeDetail(detail: ComicDetail): string {
   const json = JSON.stringify(detail, null, 2);
   const id = detail.url.split("/").pop();
-  const file_name = `tmp/coronaex_detail_${id}.json`;
+  const file_name = `tmp/corona-ex_detail_${id}.json`;
   fs.writeFileSync(file_name, json);
   return file_name;
 }
