@@ -43,7 +43,7 @@ async function run() {
     monthly: urls[1],
   };
   const json = JSON.stringify(data, null, 2);
-  fs.writeFileSync("tmp/comicwalker_ranking.json", json);
+  fs.writeFileSync("tmp/comic-walker_ranking.json", json);
 }
 
 run().catch(console.error);
