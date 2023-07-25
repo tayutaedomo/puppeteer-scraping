@@ -1,6 +1,7 @@
 import puppeteer from "puppeteer";
 import * as cheerio from "cheerio";
 import * as fs from "fs";
+import { Ranking } from "./comic-walker";
 
 async function run() {
   const browser = await puppeteer.launch({
@@ -36,7 +37,7 @@ async function run() {
   await browser.close();
 
   // ファイルに書き出す
-  const data = {
+  const data: Ranking = {
     date: new Date().toISOString(),
     daily: urls[0],
     monthly: urls[1],
