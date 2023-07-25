@@ -13,7 +13,10 @@
     "cex:jq4": "cat tmp/coronaex_comic_details.json | jq '[.[] | select(.likeCount >= 50000)] | length'",
     "cex:jq5": "cat tmp/coronaex_comic_details.json | jq -r '[.[] | select(.likeCount >= 50000)] | sort_by(.likeCount) | map([.likeCount ,.title] | join(\",\")) | join(\"\n\")'",
     "cw:rank": "npx ts-node scripts/comic-walker_ranking.ts",
-    "cw:details": "npx ts-node scripts/comic-walker_ranking_details.ts"
+    "cw:details": "npx ts-node scripts/comic-walker_ranking_details.ts",
+    "cw:concat": "python scripts/comic-walker_concat_details.py",
+    "cw:jq": "cat tmp/comic-walker_details.json | jq '.[].title'",
+    "cw:jq2": "cat tmp/comic-walker_details.json | jq '.[] | {title, latestEpisode}'"
   },
   "keywords": [],
   "author": "",
