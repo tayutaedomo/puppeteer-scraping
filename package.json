@@ -23,7 +23,8 @@
     "ka:bm4": "npx ts-node scripts/kakuyomu_bookmarks.ts completed",
     "ka:bm5": "npx ts-node scripts/kakuyomu_bookmarks.ts stocked",
     "ka:bm6": "npx ts-node scripts/kakuyomu_bookmarks.ts plus_one",
-    "ka:bm7": "npx ts-node scripts/kakuyomu_bookmarks.ts plus_two"
+    "ka:bm7": "npx ts-node scripts/kakuyomu_bookmarks.ts plus_two",
+    "ka:bm:concat": "python scripts/kakuyomu_bookmark_concat.py"
   },
   "keywords": [],
   "author": "",
