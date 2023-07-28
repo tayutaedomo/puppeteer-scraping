@@ -16,7 +16,8 @@
     "cw:details": "npx ts-node scripts/comic-walker_ranking_details.ts",
     "cw:concat": "python scripts/comic-walker_concat_details.py",
     "cw:jq": "cat tmp/comic-walker_details.json | jq '.[].title'",
-    "cw:jq2": "cat tmp/comic-walker_details.json | jq '.[] | {title, latestEpisode}'"
+    "cw:jq2": "cat tmp/comic-walker_details.json | jq '.[] | {title, latestEpisode}'",
+    "ka:bookmark": "npx ts-node scripts/kakuyomu_bookmarks.ts"
   },
   "keywords": [],
   "author": "",
