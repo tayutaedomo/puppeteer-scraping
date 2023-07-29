@@ -1,5 +1,6 @@
 import puppeteer, { Page } from "puppeteer";
 import * as fs from "fs";
+import { login } from "./kakuyomu";
 
 async function run() {
   const urls: Record<string, string[]> = {
@@ -60,24 +61,6 @@ async function run() {
   // ファイルに書き出す
   const json = JSON.stringify(bookmarkUrls, null, 2);
   fs.writeFileSync(`tmp/kakuyomu_bookmark_${bookmarkType}.json`, json);
-}
-
-async function login(page: Page) {
-  await page.goto("https://kakuyomu.jp/login");
-
-  await page.type(
-    'input[name="email_address"]',
-    process.env.KAKUYOMU_EMAIL || ""
-  );
-  await page.type(
-    'input[name="password"]',
-    process.env.KAKUYOMU_PASSWORD || ""
-  );
-
-  await Promise.all([
-    page.waitForNavigation({ waitUntil: "networkidle2" }),
-    page.click('button[type="submit"]'),
-  ]);
 }
 
 async function getBookmarkUrls(page: Page, url: string): Promise<string[]> {
