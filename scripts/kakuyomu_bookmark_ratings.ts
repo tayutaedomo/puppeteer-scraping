@@ -5,6 +5,7 @@ import { login } from "./kakuyomu";
 type BookmarkTypes =
   | "all"
   | "in_progress"
+  | "completed"
   | "stopped"
   | "stocked"
   | "plus_onw"
