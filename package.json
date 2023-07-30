@@ -26,7 +26,8 @@
     "ka:bm7": "npx ts-node scripts/kakuyomu_bookmarks.ts plus_two",
     "ka:bm:concat": "python scripts/kakuyomu_bookmark_concat.py",
     "ka:rating": "npx ts-node scripts/kakuyomu_bookmark_ratings.ts",
-    "ka:rating:concat": "python scripts/kakuyomu_rating_concat.py"
+    "ka:rating:concat": "python scripts/kakuyomu_rating_concat.py",
+    "ka:rating:tsv": "python scripts/kakuyomu_rating_json_to_tsv.py"
   },
   "keywords": [],
   "author": "",
